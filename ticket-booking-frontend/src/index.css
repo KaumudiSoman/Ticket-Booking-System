@@ -237,3 +237,15 @@ button:disabled {
   color: var(--amber);
   font-size: 1.1rem;
 }
+
+input {
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  color: var(--text);
+  border-radius: 4px;
+}
+
+label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}

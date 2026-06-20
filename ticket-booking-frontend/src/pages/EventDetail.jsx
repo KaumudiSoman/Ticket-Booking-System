@@ -4,8 +4,8 @@ import {
   getEventById,
   reserveSeats,
   confirmBooking,
-  getGuestUserId,
 } from "../api.js";
+import { getUser } from "../auth.js";
 
 function reservationKey(eventId) {
   return `reservation_${eventId}`;
@@ -120,7 +120,7 @@ export default function EventDetail() {
       const res = await reserveSeats({
         eventId: id,
         seatNumbers: selectedSeats,
-        userId: getGuestUserId(),
+        userId: getUser()._id,
       });
       setReservation(res.data);
       saveReservation(id, res.data);
