@@ -69,7 +69,6 @@ nav a::before {
   content: "🎫 ";
 }
 
-/* Ticket-stub style card for each event */
 .card {
   position: relative;
   background: var(--surface);

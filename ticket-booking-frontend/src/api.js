@@ -10,8 +10,6 @@ async function handleResponse(res) {
   return data;
 }
 
-// Attaches the Authorization header automatically whenever a token exists,
-// so any backend route that adds the `protect` middleware later just works.
 function authHeaders() {
   const token = getToken();
   return token ? { Authorization: `Bearer ${token}` } : {};

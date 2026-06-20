@@ -6,7 +6,6 @@ import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
 import { isLoggedIn, getUser, clearAuth } from "./auth.js";
 
-// Wrap any page that requires login with this.
 function RequireAuth({ children }) {
   if (!isLoggedIn()) {
     return <Navigate to="/login" replace />;

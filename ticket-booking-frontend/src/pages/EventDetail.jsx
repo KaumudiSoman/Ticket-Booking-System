@@ -43,7 +43,6 @@ export default function EventDetail() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
-  // Reservation state - restored from localStorage if one exists for this event
   const [reservation, setReservation] = useState(() => loadSavedReservation(id));
   const [secondsLeft, setSecondsLeft] = useState(0);
 
@@ -62,7 +61,6 @@ export default function EventDetail() {
     loadEvent();
   }, [id]);
 
-  // Countdown timer for the active reservation
   useEffect(() => {
     if (!reservation) return;
     const interval = setInterval(() => {
@@ -82,11 +80,8 @@ export default function EventDetail() {
     return () => clearInterval(interval);
   }, [reservation]);
 
-  // After a reservation expires, the backend's cron job only clears it once
-  // a minute, so the seats may still show as "reserved" for a bit. Keep
-  // re-checking every few seconds for up to a minute until they free up.
   useEffect(() => {
-    if (reservation) return; // only poll when there's nothing active
+    if (reservation) return;
     const stillStale = seats.some((s) => s.status === "reserved");
     if (!stillStale) return;
 
@@ -94,7 +89,7 @@ export default function EventDetail() {
     const poll = setInterval(() => {
       attempts += 1;
       loadEvent();
-      if (attempts >= 12) clearInterval(poll); // stop after ~1 minute
+      if (attempts >= 12) clearInterval(poll);
     }, 5000);
 
     return () => clearInterval(poll);

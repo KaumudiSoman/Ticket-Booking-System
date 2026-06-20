@@ -1,6 +1,3 @@
-// Tiny helper for storing/reading the logged-in user + JWT token.
-// No real "session" management here — just localStorage, kept simple.
-
 export function saveAuth(token, user) {
   localStorage.setItem("authToken", token);
   localStorage.setItem("authUser", JSON.stringify(user));
