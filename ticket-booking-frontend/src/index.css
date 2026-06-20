@@ -1,0 +1,239 @@
+:root {
+  --bg: #14161c;
+  --surface: #1f222b;
+  --surface-alt: #262a35;
+  --line: #343847;
+  --text: #eef0f4;
+  --muted: #8b92a3;
+  --amber: #f0a830;
+  --amber-dim: #5c4521;
+  --green: #4ade80;
+  --red: #f87171;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", Arial, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+h1, h2 {
+  font-family: "Oswald", "Inter", sans-serif;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+h1 {
+  font-size: 1.9rem;
+  margin: 28px 0 4px;
+}
+
+h2 {
+  font-size: 1.1rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+  color: var(--amber);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 10px;
+}
+
+nav a {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+nav a::before {
+  content: "🎫 ";
+}
+
+/* Ticket-stub style card for each event */
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 16px;
+  border-left: 4px dashed var(--amber-dim);
+}
+
+.card h2 {
+  color: var(--text);
+  margin-top: 0;
+}
+
+.card p {
+  color: var(--muted);
+  margin: 4px 0;
+  font-size: 0.92rem;
+}
+
+button {
+  background: var(--amber);
+  color: #1a1206;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+  margin-top: 10px;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+button:hover:not(:disabled) {
+  background: #ffb945;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+button:disabled {
+  background: var(--surface-alt);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+/* Seating area */
+.seat-area {
+  width: fit-content;
+  margin: 18px auto 24px;
+}
+
+.stage {
+  width: 100%;
+  background: linear-gradient(180deg, var(--amber-dim), #2a1f0e);
+  color: var(--amber);
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px 4px 40px 40px;
+  margin-bottom: 22px;
+  letter-spacing: 0.25em;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 6px 18px -6px rgba(240, 168, 48, 0.4);
+}
+
+.seat-grid {
+  display: grid;
+  grid-template-columns: repeat(15, 45px);
+  gap: 8px;
+}
+
+.seat {
+  width: 45px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 4px 4px 8px 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--surface);
+  transition: transform 0.08s ease;
+}
+
+.seat:hover:not(.reserved):not(.booked) {
+  transform: translateY(-2px);
+}
+
+.seat.available {
+  background: var(--surface);
+  color: var(--muted);
+}
+
+.seat.reserved {
+  background: #5b4416;
+  border-color: #8a6a1f;
+  color: #f0d59a;
+  cursor: not-allowed;
+}
+
+.seat.booked {
+  background: #4a2222;
+  border-color: #7a3232;
+  color: #e8a3a3;
+  cursor: not-allowed;
+}
+
+.seat.selected {
+  background: #1d4d33;
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 14px 0;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.error {
+  color: var(--red);
+  background: rgba(248, 113, 113, 0.1);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.success {
+  color: var(--green);
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+.timer {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  color: var(--amber);
+  font-size: 1.1rem;
+}

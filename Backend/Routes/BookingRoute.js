@@ -1,4 +1,3 @@
-// routes/bookingRoutes.js
 const express = require("express");
 const bookingController = require("../Controllers/BookingController");
 
