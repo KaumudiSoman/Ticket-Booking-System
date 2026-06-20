@@ -10,10 +10,16 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: [true, 'Password is required'],
+      minlength: [8, 'Password must have atleast 8 characters'],
+      maxlength: [60, 'Password can not have more than 60 characters']
     },
   },
   { timestamps: true }
 );
+
+userSchema.methods.correctPassword = function (candidatePassword) {
+  return candidatePassword === this.password;
+};
 
 module.exports = mongoose.model("User", userSchema);
